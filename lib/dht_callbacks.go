@@ -83,6 +83,10 @@ func (p *PeerToPeer) packetFind(packet *DHTPacket) error {
 		Log(Debug, "Skipping self")
 		return nil
 	}
+	if packet.Infohash != p.Dht.NetworkHash {
+		Log(Debug, "Skipping wrong hash")
+		return nil
+	}
 
 	Log(Debug, "Received `find`: %+v", packet)
 	peer := p.Peers.GetPeer(packet.Data)

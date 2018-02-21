@@ -202,7 +202,15 @@ func (p *PeerToPeer) FindNetworkAddresses() {
 			}
 			Log(Debug, "Interface %s: %s. Type: %s. %s", i.Name, addr.String(), ipType, decision)
 			if decision == "Saving" {
-				p.LocalIPs = append(p.LocalIPs, ip)
+				isNew := true
+				for _, eip := range p.LocalIPs {
+					if eip.String() == ip.String() {
+						isNew = false
+					}
+				}
+				if isNew {
+					p.LocalIPs = append(p.LocalIPs, ip)
+				}
 			}
 		}
 	}

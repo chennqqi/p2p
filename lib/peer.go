@@ -408,10 +408,10 @@ func (np *NetworkPeer) stateConnected(ptpc *PeerToPeer) error {
 		// TODO: Consider moving to Disconnect state here
 		np.SetState(PeerStateInit, ptpc)
 		return nil
-	} else if np.RemoteState == PeerStateWaitingToConnect {
-		Log(Debug, "Peer %s is waiting for us to connect", np.ID)
-		np.SetState(PeerStateWaitingToConnect, ptpc)
-		return nil
+		// } else if np.RemoteState == PeerStateWaitingToConnect {
+		// 	Log(Debug, "Peer %s is waiting for us to connect", np.ID)
+		// 	np.SetState(PeerStateWaitingToConnect, ptpc)
+		// 	return nil
 	}
 
 	// TODO: This code is old. Analyze if we still can loose HW or IP
